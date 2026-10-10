@@ -1,0 +1,36 @@
+
+/* ================================================== */
+/* SMOOTH PAGE TRANSITION OVERLAY                       */
+/* ================================================== */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F20000;
+    z-index: 99999;
+    transform: translateY(0%);
+    pointer-events: all;
+    will-change: transform;
+}
+
+/* Swipe In: Covers screen from top to bottom */
+.transition-overlay.swipe-in {
+    animation: wipeIn 0.45s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Swipe Out: Uncovers screen back to top */
+.transition-overlay.swipe-out {
+    animation: wipeOut 0.45s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes wipeIn {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0%); }
+}
+
+@keyframes wipeOut {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-100%); }
+}

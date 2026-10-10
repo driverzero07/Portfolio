@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Gallery - Ahmed Ali</title>
+
+    <!-- Google Fonts: Manrope, Montserrat, Syne & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:ital,wght@1,900&family=Syne:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for Social & Navigation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        manrope: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brandRed: '#e30613',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transition.css">
+    <style>
+        .filter-btn.active {
+            background-color: #e30613;
+            color: white;
+        }
+        .project-card img {
+            transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        /* Image Lightbox Overlay */
+        #image-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            cursor: zoom-out;
+            padding: 20px;
+        }
+        #image-lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="text-gray-900 selection:bg-brandRed selection:text-white bg-white">
+    <!-- Image Lightbox -->
+    <div id="image-lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Full view">
+    </div>
+    <!-- Custom Inverted Cursor Element -->
+    <div class="dot-cursor" id="cursor"></div>
+
+    <!-- Smooth Transition Overlay -->
+    <div id="transition-overlay" class="transition-overlay"></div>
+
+    <!-- HEADER (Synced with header.html) -->
+    <div id="header-placeholder" class="relative z-50 px-6 py-6 md:px-12 md:py-8" style="background: linear-gradient(0deg, #FFFFFF 0%, #434343 210.94%);"></div>
+
+    <!-- HERO SECTION (Left Aligned & Full Width) -->
+    <section class="w-full px-6 md:px-12 py-12 md:py-20 font-manrope">
+        <div class="w-full text-left">
+            <p class="Sub-heading text-gray-500 mb-4">Projects</p>
+            <h1 class="Heading1 text-gray-900 mb-6">A Selection Of Things<br>I've Created.</h1>
+            <p class="Body text-gray-600 max-w-2xl text-lg leading-relaxed">
+                Explore my latest work across 3D visualization, graphic design, and web development. Each project is a blend of technical skill and creative exploration.
+            </p>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION (Left Aligned & Full Width) -->
+    <section class="w-full px-6 md:px-12 mb-12 font-manrope">
+        <div class="flex flex-wrap justify-start gap-3 md:gap-4">
+            <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-gray-200 hover:border-brandRed" data-category="all">All Work</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-gray-200 text-gray-500 hover:text-gray-900 hover:border-brandRed" data-category="3D Modelling">3D Modelling</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-gray-200 text-gray-500 hover:text-gray-900 hover:border-brandRed" data-category="Web Development">Web Development</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-gray-200 text-gray-500 hover:text-gray-900 hover:border-brandRed" data-category="Graphic Design">Graphic Design</button>
+        </div>
+    </section>
+
+    <!-- PROJECT GRID SECTION (Full Width) -->
+    <section class="w-full px-6 md:px-12 pb-24 font-manrope">
+        <div class="w-full" >
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 w-full" >
+                <!-- Dynamic components will render here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Synced with footer.html) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Lenis Smooth Scroll Library -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@0.2.28/bundled/lenis.js"></script>
+    <!-- GSAP & ScrollTrigger & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="shared.js"></script>
+    <script src="script.js"></script>
+    <script>
+        /*
+         ==================================================================
+         * PORTFOLIO DATA
+         ==================================================================
+        */
+        const portfolioItems = [
+            {
+                title: "Sneakers Poster",
+                year: "2026",
+                category: "Graphic Design",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/Poster_Mockup_3.png"
+            },
+            {
+                title: "WatchTower 3D Render",
+                year: "2023",
+                category: "3D Modelling",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/behance_img_1%20(1).png"
+            },
+            {
+                title: "Agency Website",
+                year: "2026",
+                category: "Web Development",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/RR%20mockup%20(2).png"
+            },
+            {
+                title: "Porsche 911 3D Render",
+                year: "2025",
+                category: "3D Modelling",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/wide.webp"
+            },
+            {
+                title: "Type Design",
+                year: "2024",
+                category: "Graphic Design",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/Type%20Design%20mockup.webp"
+            },
+            {
+                title: "Luxury Website",
+                year: "2025",
+                category: "Web Development",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/Luxury_Mockup_3.webp"
+            },
+            {
+                title: "Purse 3D Render",
+                year: "2025",
+                category: "3D Modelling",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/purse%201.webp"
+            },
+            {
+                title: "StellarBrew Coffee Co.",
+                year: "2025",
+                category: "Graphic Design",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/Coffee%20mockup.webp"
+            },
+            {
+                title: "RenderRealm Website",
+                year: "2026",
+                category: "Web Development",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/website.webp"
+            },
+            {
+                title: "PS5 Controller",
+                year: "2023",
+                category: "3D Modellingn",
+                imageUrl: "https://raw.githubusercontent.com/driverzero07/Images/main/PS5%20Controller%2001%20e.webp"
+            }
+            
+            
+        ];
+
+        function createPortfolioCard(item) {
+            return `
+                <div class="flex flex-col gap-3 group cursor-pointer project-card" onclick="openLightbox('${item.imageUrl}')" data-category="${item.category}">
+                    <div class="card-image-container aspect-[4/3] w-full bg-gray-200 overflow-hidden shadow-sm transition-transform duration-300 ease-out group-hover:scale-[1.01]">
+                        <img
+                            src="${item.imageUrl}"
+                            alt="${item.title}"
+                            class="w-full h-full object-cover object-center"
+                            onerror="this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Image+Not+Found'"
+                        />
+                    </div>
+                    <div class="flex justify-between items-center text-[#4A4A4A] px-1 font-normal text-base md:text-lg">
+                        <span class="truncate pr-4">${item.title}</span>
+                        <span class="text-gray-400 font-normal shrink-0">${item.year}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openLightbox(url) {
+            const lightbox = document.getElementById('image-lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = url;
+            lightbox.style.display = 'flex';
+        }
+
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('portfolio-grid');
+            if (!grid) return;
+
+            const filteredItems = filter === 'all'
+                ? portfolioItems
+                : portfolioItems.filter(item => item.category === filter);
+
+            grid.innerHTML = filteredItems.map(createPortfolioCard).join('');
+        }
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'text-white');
+                    b.classList.add('text-gray-500');
+                });
+                btn.classList.add('active', 'text-white');
+                btn.classList.remove('text-gray-500');
+
+                renderGallery(btn.getAttribute('data-category'));
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGallery();
+        });
+    </script>
+</body>
+</html>

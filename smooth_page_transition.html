@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Page Transition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Red transition overlay screen */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e50914; /* Pure bright red matching video */
+            z-index: 9999;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        /* Swipe In Animation: Cover screen from top to bottom */
+        .transition-overlay.swipe-in {
+            animation: wipeIn 0.45s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        /* Swipe Out Animation: Uncover screen back to top */
+        .transition-overlay.swipe-out {
+            animation: wipeOut 0.45s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes wipeIn {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        @keyframes wipeOut {
+            0% {
+                transform: translateY(0%);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        /* Active page styling */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-content.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Glow effect for active nav button */
+        .nav-btn.active {
+            background-color: #e50914;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col justify-between relative">
+
+    <div id="transition-overlay" class="transition-overlay"></div>
+
+    <header class="w-full py-6 px-8 flex justify-between items-center z-10 border-b border-zinc-800/80 backdrop-blur-md bg-black/50 fixed top-0 left-0">
+        <div class="flex items-center space-x-3">
+            <div class="w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
+            <span class="font-extrabold text-xl tracking-wider uppercase text-zinc-100">Swipe<span class="text-red-600">FX</span></span>
+        </div>
+        
+        <nav class="flex items-center space-x-2 md:space-x-4">
+            <button onclick="navigateTo('page1')" id="btn-page1" class="nav-btn active px-4 py-2 rounded-full font-semibold text-sm md:text-base border border-zinc-700 hover:border-red-600 transition-all duration-300">
+                Page 01
+            </button>
+            <button onclick="navigateTo('page2')" id="btn-page2" class="nav-btn px-4 py-2 rounded-full font-semibold text-sm md:text-base border border-zinc-700 hover:border-red-600 transition-all duration-300">
+                Page 02
+            </button>
+            <button onclick="navigateTo('page3')" id="btn-page3" class="nav-btn px-4 py-2 rounded-full font-semibold text-sm md:text-base border border-zinc-700 hover:border-red-600 transition-all duration-300">
+                Page 03
+            </button>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center pt-24 pb-16 px-4">
+        
+        <!-- PAGE 01 CONTENT -->
+        <section id="page1" class="page-content active flex-col items-center justify-center text-center">
+            <h1 class="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight mb-4 select-none drop-shadow-lg">
+                Page 01
+            </h1>
+            <p class="text-zinc-400 max-w-md text-base sm:text-lg mb-8">
+                Initial screen matching the exact transition video demonstration. Click next to trigger the red wipe animation.
+            </p>
+            <button onclick="navigateTo('page2')" class="group relative px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-full shadow-lg shadow-red-900/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+                <span>Next Page</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </section>
+
+        <!-- PAGE 02 CONTENT -->
+        <section id="page2" class="page-content flex-col items-center justify-center text-center">
+            <h1 class="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight mb-4 select-none drop-shadow-lg text-white">
+                Page 02
+            </h1>
+            <p class="text-zinc-400 max-w-md text-base sm:text-lg mb-8">
+                You have seamlessly transitioned into Page 02 through the full-screen red swipe layer.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="navigateTo('page1')" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-full transition-all duration-300 border border-zinc-700">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Previous
+                </button>
+                <button onclick="navigateTo('page3')" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full shadow-lg shadow-red-900/40 transition-all duration-300 transform hover:scale-105">
+                    Next Page <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 03 CONTENT -->
+        <section id="page3" class="page-content flex-col items-center justify-center text-center">
+            <h1 class="text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight mb-4 select-none drop-shadow-lg">
+                Page 03
+            </h1>
+            <p class="text-zinc-400 max-w-md text-base sm:text-lg mb-8">
+                Third interactive page layer. Experience dynamic transitions anytime by navigating between tabs above.
+            </p>
+            <button onclick="navigateTo('page1')" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-full shadow-lg shadow-red-900/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Back To Page 01</span>
+            </button>
+        </section>
+
+    </main>
+
+    <footer class="w-full py-4 text-center text-xs sm:text-sm text-zinc-500 border-t border-zinc-900">
+        <p>Use navigation buttons above or on-screen actions to trigger red wipe page transitions.</p>
+    </footer>
+
+    <script>
+        let isTransitioning = false;
+        let currentPageId = 'page1';
+
+        function navigateTo(targetPageId) {
+            // Prevent triggering transition if already on target page or transition in progress
+            if (isTransitioning || currentPageId === targetPageId) return;
+
+            isTransitioning = true;
+            const overlay = document.getElementById('transition-overlay');
+
+            // Step 1: Trigger red overlay swipe-in (covers screen)
+            overlay.classList.remove('swipe-out');
+            overlay.classList.add('swipe-in');
+
+            // Step 2: At mid-point (when red overlay fully covers screen), swap page contents
+            setTimeout(() => {
+                // Hide current page
+                const activePage = document.getElementById(currentPageId);
+                if (activePage) activePage.classList.remove('active');
+
+                // Show target page
+                const targetPage = document.getElementById(targetPageId);
+                if (targetPage) targetPage.classList.add('active');
+
+                // Update navigation button active state
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                const activeBtn = document.getElementById(`btn-${targetPageId}`);
+                if (activeBtn) activeBtn.classList.add('active');
+
+                // Update state tracker
+                currentPageId = targetPageId;
+
+                // Step 3: Trigger red overlay swipe-out (reveals new screen towards right)
+                overlay.classList.remove('swipe-in');
+                overlay.classList.add('swipe-out');
+
+                // Unlock transitions after animation finishes
+                setTimeout(() => {
+                    overlay.classList.remove('swipe-out');
+                    isTransitioning = false;
+                }, 450); // Matches CSS wipeOut duration
+
+            }, 450); // Matches CSS wipeIn duration
+        }
+
+        // Support Keyboard Arrow Navigation for smooth UX
+        document.addEventListener('keydown', (e) => {
+            if (isTransitioning) return;
+            
+            if (e.key === 'ArrowRight') {
+                if (currentPageId === 'page1') navigateTo('page2');
+                else if (currentPageId === 'page2') navigateTo('page3');
+            } else if (e.key === 'ArrowLeft') {
+                if (currentPageId === 'page3') navigateTo('page2');
+                else if (currentPageId === 'page2') navigateTo('page1');
+            }
+        });
+    </script>
+</body>
+</html>

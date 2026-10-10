@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Ahmed Ali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Social & Navigation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        manrope: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brandRed: '#e30613',
+                    }
+                }
+            }
+        }
+    </script>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="transition.css">
+</head>
+<body>
+
+    <!-- Smooth Transition Overlay -->
+    <div id="transition-overlay" class="transition-overlay"></div>
+  <div id="header-placeholder" class="relative z-50 px-6 py-6 md:px-12 md:py-8" style="background: linear-gradient(0deg, #FFFFFF 0%, #434343 210.94%);"></div>
+
+  <main class="contact" style="margin-left: 24px; margin-right: 24px;">
+
+    <section class="contact__info">
+      <p class="Sub-heading">Contact</p>
+      <h1 class="Heading1" style="color: black;">Let’s make something interesting.</h1>
+      <p class="Body" style="margin-top: 15px;">Have an idea, project, or just want to say hello? I’d love <br>to hear what you’re working on.</p>
+
+      <ul class="details">
+        <li><i class="fa-solid fa-envelope dot"></i><a href="mailto:aleyahmed54321@gmail.com">aleyahmed54321@gmail.com</a></li>
+        <li><i class="fa-solid fa-phone dot"></i><a href="tel:+923422435215">+92 342 2435215</a></li>
+        <li><i class="fa-brands fa-instagram dot"></i><span>@ahmedaley07</span></li>
+      </ul>
+    </section>
+
+    <form class="form" id="contact-form" novalidate onsubmit="event.preventDefault();">
+
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" placeholder="Ahmed Ali" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label for="interest">What are you interested in?</label>
+        <input id="interest" name="interest" type="text" placeholder="Graphic design / 3D / Web development / Other">
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="7" placeholder="Tell me about your project..." required></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="send">Send Message</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+  </main>
+
+  <div class="dot-cursor" id="cursor"></div>
+  <div id="footer-placeholder"></div>
+  
+  <!-- EXTERNAL LIBRARIES (REQUIRED FOR script.js) -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@0.2.28/bundled/lenis.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+
+  <!-- Local scripts -->
+  <script src="shared.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

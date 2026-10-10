@@ -1,0 +1,48 @@
+<header class="relative z-20 flex items-center justify-between w-full mx-auto">
+    <a href="index.html" class="logo-text text-4xl md:text-5xl text-white hover:opacity-90 transition-opacity select-none">
+        <img src="https://raw.githubusercontent.com/driverzero07/Images/3be8dc8e6e14a02da2323d9cf85225de8530fcca/Logo.svg" alt="Logo" class="h-8 md:h-12 w-auto">
+    </a>
+    <nav id="desktop-nav" class="hidden md:flex items-center bg-white rounded-full px-2 py-1.5 shadow-lg border border-white/20">
+        <a href="index.html" data-page="index.html" class="nav-btn bg-slate-900 text-white font-medium text-sm px-5 py-1.5 rounded-full shadow transition-all duration-300">Home</a>
+        <a href="Myself.html" data-page="Myself.html" class="nav-btn text-gray-800 hover:text-black font-medium text-sm px-5 py-1.5 rounded-full transition-all duration-300">Myself</a>
+        <a href="project-gallery.html" data-page="project-gallery.html" class="nav-btn text-gray-800 hover:text-black font-medium text-sm px-5 py-1.5 rounded-full transition-all duration-300">Project</a>
+        <a href="Contact.html" data-page="Contact.html" class="nav-btn text-gray-800 hover:text-black font-medium text-sm px-5 py-1.5 rounded-full transition-all duration-300">Contact</a>
+    </nav>
+    <div class="hidden md:flex items-center space-x-4">
+        <div class="flex items-center space-x-2.5">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white hover:text-brandRed text-white flex items-center justify-center text-xs transition-all duration-300 backdrop-blur-sm">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white hover:text-brandRed text-white flex items-center justify-center text-xs transition-all duration-300 backdrop-blur-sm">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white hover:text-brandRed text-white flex items-center justify-center text-xs transition-all duration-300 backdrop-blur-sm">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden w-10 h-10 rounded-lg bg-white text-black flex items-center justify-center text-lg focus:outline-none shadow-md cursor-pointer">
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+</header>
+
+<div id="mobile-menu" class="fixed top-24 left-6 right-6 bg-white text-black rounded-2xl p-6 shadow-2xl z-[9999] opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300 md:hidden">
+    <nav class="flex flex-col space-y-4 font-medium text-center">
+        <a href="index.html" data-page="index.html" class="mobile-link bg-black text-white py-2.5 rounded-xl font-semibold transition-all">Home</a>
+        <a href="Myself.html" data-page="Myself.html" class="mobile-link text-gray-800 py-2 hover:bg-gray-100 rounded-xl transition-all">Myself</a>
+        <a href="project-gallery.html" data-page="project-gallery.html" class="mobile-link text-gray-800 py-2 hover:bg-gray-100 rounded-xl transition-all">Project</a>
+        <a href="Contact.html" data-page="Contact.html" class="mobile-link text-gray-800 py-2 hover:bg-gray-100 rounded-xl transition-all">Contact</a>
+    </nav>
+    <div class="flex justify-center space-x-4 mt-6 pt-4 border-t border-gray-200">
+        <a href="https://linkedin.com" target="_blank" class="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center text-sm">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center text-sm">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center text-sm">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+</div>

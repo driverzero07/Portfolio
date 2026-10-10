@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Myself | Ahmed Ali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome for Social & Navigation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        manrope: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brandRed: '#e30613',
+                    }
+                }
+            }
+        }
+    </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="transition.css">
+</head>
+<body>
+    <!-- Smooth Transition Overlay -->
+    <div id="transition-overlay" class="transition-overlay"></div>
+
+    <div id="header-placeholder" class="relative z-50 px-6 py-6 md:px-12 md:py-8" style="background: linear-gradient(0deg, #FFFFFF 0%, #434343 210.94%);"></div>
+  
+    <main class="container-box">
+    <div class="dot-cursor" id="cursor"></div>
+
+
+    <!-- Intro -->
+    <section class="intro px-4 md:px-0">
+      <div class="intro__text">
+        <p class="Sub-heading">Myself</p>
+        <h1 class="Heading1" style="color: black;">Hi, I am Ahmed Ali</h1>
+        <p class="Body" style="margin-top: 20px; ">A creative designer and developer exploring graphic design, 3D, and the web Development.</p>
+
+        <ul class="tags" id="tags">
+          <li><button class="tag is-active" type="button">Graphic Design</button></li>
+          <li><button class="tag is-active" type="button">Web Development</button></li>
+          <li><button class="tag is-active" type="button">3D Modelling</button></li>
+          <li><button class="tag" type="button">Product Visualization</button></li>
+          <li><button class="tag" type="button">UI/UX Design</button></li>
+        </ul>
+
+        <div class="note">
+          <div class="img-box note__thumb" style="background-image: url('https://raw.githubusercontent.com/driverzero07/Images/main/d12e8e6856ef91f99b389648ae910e80.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Image placeholder"></div>
+          <p class="Heading7">I like learning by making things, experimenting with new ideas, and turning concepts into something visual and functional.</p>
+        </div>
+      </div>
+
+      <div class="img-box intro__photo" style="background-image: url('https://raw.githubusercontent.com/driverzero07/Images/main/My%20image.png'); background-size: cover; background-position: center;" role="img" aria-label="Portrait placeholder"></div>
+    </section>>
+
+    <!-- Statement -->
+    <section class="statement px-4 md:px-0">
+      <h2 class="HeadingLarge" style="color: black;">
+        Hi, I’m Ahmed, a multi-talented
+        <span class="img-box pill pill--a" style="background-image: url('https://raw.githubusercontent.com/driverzero07/Images/main/189251f53cc7a88c07f652df1b25cdce.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Image placeholder"></span>
+        creative based in Pakistan, working across
+        <span class="img-box pill pill--b" style="background-image: url('https://raw.githubusercontent.com/driverzero07/Images/main/fccda7a3487079a4c1ead43350205c12.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Image placeholder"></span>
+        graphic design, 3D modelling, and web development.
+      </h2>
+      <p class="Body" style="margin-top: 20px; ">I enjoy combining visuals and technology to create things that are useful, interesting, and visually engaging.</p>
+    </section>>
+
+    <!-- More than looks -->
+    <section class="more px-4 md:px-0">
+      <div class="more__text">
+        <h2 class="Heading1" style="color: black;">More than just making things look good.</h2>
+        <p class="Body" style="margin-top: 20px; ">My work sits somewhere between creativity and technology. I enjoy designing visuals, building 3D worlds, and creating websites that bring ideas to life.</p>
+        <p class="Body" style="margin-top: 20px; ">Most of my projects are self-initiated. They give me a space to experiment, learn new tools, solve problems, and continuously improve my skills.</p>
+      </div>
+      <div class="img-box more__photo" style="background-image: url('https://raw.githubusercontent.com/driverzero07/Images/main/resplendent_flash_a_Ultra-high-resolutio.jpg'); background-size: cover; background-position: center;" role="img" aria-label="Portrait placeholder"></div>
+    </section>>
+
+    <!-- FOOTER (Synced with footer.html) -->
+    
+  </main>
+  
+  <div id="footer-placeholder"></div>
+  
+  <!-- EXTERNAL LIBRARIES (REQUIRED FOR script.js) -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@0.2.28/bundled/lenis.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+
+  <!-- Local scripts -->
+  <script src="shared.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
